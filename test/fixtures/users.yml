@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  alias: MyString
+  current_location_x: 1.5
+  current_location_y: 1.5
+  secret_code: MyString
+  target_id: MyString
+  integer: MyString
+
+two:
+  alias: MyString
+  current_location_x: 1.5
+  current_location_y: 1.5
+  secret_code: MyString
+  target_id: MyString
+  integer: MyString
