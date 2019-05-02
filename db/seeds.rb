@@ -18,8 +18,8 @@ User.destroy_all
 20.times do User.create({
     name: Faker::Name.first_name,
     alias: Faker::Name.first_name,
-    longitude: Faker::Number.decimal(2, 6),
     latitude: Faker::Number.decimal(2, 6),
+    longitude: Faker::Number.decimal(2, 6),
     secret_code: Faker::Number.number(6),
     target_id: nil,
     game_id: 1,
@@ -32,8 +32,8 @@ end
 # 30.times do Kill.create({
 #       killer_id: (1..20).sort_by{rand}[1],
 #       victim_id: (1..20).sort_by{rand}[1],
-#       kill_location_x: Faker::Number.decimal(2, 6),
-#       kill_location_y: Faker::Number.decimal(2, 6),
+#       latitude: Faker::Number.decimal(2, 6),
+#       longitude: Faker::Number.decimal(2, 6),
 #       game_id: (1..10).sort_by{rand}[1],
 #       time: Faker::Time.backward(14, :evening)
 #       })
