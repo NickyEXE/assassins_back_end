@@ -22,7 +22,8 @@ User.destroy_all
     longitude: Faker::Number.decimal(2, 6),
     secret_code: Faker::Number.number(6),
     target_id: nil,
-    game_id: 1
+    game_id: 1,
+    password_digest: 123456
     })
 end
 #
