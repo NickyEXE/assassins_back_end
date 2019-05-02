@@ -4,6 +4,11 @@ class UsersController < ApplicationController
     user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
   end
 
+  def index
+    @users = User.all
+    render json: @users
+  end
+
   private
 
   def user_params
