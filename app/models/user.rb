@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :kills
   validates :name, :alias, presence: true
   validates :name, :alias, uniqueness: true
-  has_secure_password
+  # has_secure_password
 
 
   def generateWords

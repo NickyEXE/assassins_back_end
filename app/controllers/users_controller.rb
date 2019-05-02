@@ -13,4 +13,8 @@ class UsersController < ApplicationController
     @users = User.all
     render json: @users
   end
+
+  def user_params
+    params.permit(:name, :id, :password, :password_confirmation, :alias)
+  end
 end
