@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # get 'kills', :as 'kills/index'
-  get 'users/create'
+  post 'users/create' => 'users#create' 
   get '/kills' => 'kills#index', :as => 'kills'
   get '/games' => 'games#index', :as => 'games'
   get '/users' => 'users#index', :as => 'users'

@@ -5,6 +5,8 @@ require 'net/http'
 class User < ApplicationRecord
   belongs_to :game
   has_many :kills
+  validates :name, :alias, presence: true
+  validates :name, :alias, uniqueness: true
 
 
   def generateWords
