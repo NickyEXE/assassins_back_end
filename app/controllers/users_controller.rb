@@ -9,6 +9,14 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def login
+    @user = User.find_by(alias: alias)
+    if @user.password_digest == params[:password_digest]
+      render json: @user
+    else
+      render json: {error: "Invalid Password"}
+  end
+
   def index
     @users = User.all
     render json: @users
