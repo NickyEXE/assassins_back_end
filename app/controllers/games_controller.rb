@@ -10,4 +10,5 @@ class GamesController < ApplicationController
     @game.start_game
     render json: @game.users
   end
+
 end
