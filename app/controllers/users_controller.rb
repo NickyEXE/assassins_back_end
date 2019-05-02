@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       render json: @user
     else
       render json: {error: "Invalid Password"}
+    end
   end
 
   def update_user_location
