@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 
   def create
-    @user = Game.find_by(id: params[:id]).users.create(name: params[:name], alias: params[:alias])
+    @user = Game.find_by(id: params[:id]).users.create(name: params[:name], alias: params[:alias], password_digest: params[:password_digest])
     if @user.valid?
       @user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
     end

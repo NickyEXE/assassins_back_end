@@ -11,9 +11,9 @@ class Game < ApplicationRecord
     end
   end
 
-  def surviving_players
-    self.users.select(|user| !Kill.all.find_by(victim_id: user_id, game_id: self.id))
-  end
+  # def surviving_players
+  #   self.users.select(|user| !Kill.all.find_by(victim_id: user_id, game_id: self.id))
+  # end
 
   def assign_targets
   shuffled_order = (1..self.users.length).to_a.shuffle
