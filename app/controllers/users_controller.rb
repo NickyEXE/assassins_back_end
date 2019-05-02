@@ -10,11 +10,16 @@ class UsersController < ApplicationController
   end
 
   def login
-    @user = User.find_by(alias: alias)
+    @user = User.find_by(alias: params[:alias])
     if @user.password_digest == params[:password_digest]
       render json: @user
     else
       render json: {error: "Invalid Password"}
+  end
+
+  def update_user_location
+    @user = User.find(params[:id])
+    @user.update(params[:lat], params[:long])
   end
 
   def index

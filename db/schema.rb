@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_193436) do
+ActiveRecord::Schema.define(version: 2019_05_02_200438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,8 @@ ActiveRecord::Schema.define(version: 2019_05_02_193436) do
   create_table "kills", force: :cascade do |t|
     t.integer "killer_id"
     t.integer "victim_id"
-    t.float "kill_location_x"
-    t.float "kill_location_y"
+    t.float "latitude"
+    t.float "longitude"
     t.integer "game_id"
     t.datetime "time"
     t.datetime "created_at", null: false
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2019_05_02_193436) do
 
   create_table "users", force: :cascade do |t|
     t.string "alias"
-    t.float "current_location_x"
-    t.float "current_location_y"
+    t.float "latitude"
+    t.float "longitude"
     t.string "secret_code"
     t.integer "target_id"
     t.datetime "created_at", null: false
