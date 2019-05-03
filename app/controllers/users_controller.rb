@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     #   # @user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
     #   # @user[:secret_code] = "Squirrel President"
     # end
-    if @user.valid
+    if @user.valid?
       render json: @user
     else
       render json: {error: "That's not a valid user"}
