@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       render json: @user
     else
       render json: {error: "That's not a valid user"}
+    end
   end
 
   def locate
