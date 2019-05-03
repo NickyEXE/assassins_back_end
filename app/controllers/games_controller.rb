@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = Game.create(start_time: Time.at(params[:timestamp]/1000) started: false)
+    @game = Game.create(name: params[:name], description: params[:description], started: false)
     render @game
   end
 
