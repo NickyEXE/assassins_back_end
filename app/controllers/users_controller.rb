@@ -4,15 +4,16 @@ class UsersController < ApplicationController
   def create
     @user = Game.find_by(id: params[:id]).users.create(name: params[:name], alias: params[:alias], password_digest: params[:password_digest])
     if @user.valid?
-      @user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
+      # @user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
+      @user[:secret_code] = "Squirrel President"
     end
     render json: @user
   end
 
   def locate
-    @user = User.find_by(params[:id])
+    @user = User.find(params[:id])
     @user.update(latitude: params[:latitude], longitude: params[:longitude], lastTimeUpdated: params[:timestamp])
-    render json: @user.timestamp
+    render json: @user[:lastTimeUpdated]
   end
 
   def login
