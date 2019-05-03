@@ -9,6 +9,12 @@ class UsersController < ApplicationController
     render json: @user
   end
 
+  def locate
+    @user = User.find_by(params[:id])
+    @user.update(latitude: params[:latitude], longitude: params[:longitude], lastTimeUpdated: params[:timestamp])
+    render json: @user.timestamp
+  end
+
   def login
     @user = User.find_by(alias: params[:alias])
     if @user.password_digest == params[:password_digest]

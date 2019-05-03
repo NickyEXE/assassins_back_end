@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_200438) do
+ActiveRecord::Schema.define(version: 2019_05_03_132515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_200438) do
     t.integer "game_id"
     t.string "name"
     t.string "password_digest"
+    t.datetime "lastTimeUpdated"
   end
 
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post 'users/create' => 'users#create'
   post 'games/start' => 'games#start_game'
   post 'users/login' => 'users#login'
+  patch 'users/:id/locate' => 'users#locate'
   get '/kills' => 'kills#index', :as => 'kills'
   get '/games' => 'games#index', :as => 'games'
   get '/users' => 'users#index', :as => 'users'
