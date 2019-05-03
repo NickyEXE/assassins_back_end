@@ -6,7 +6,10 @@ class UsersController < ApplicationController
     #   # @user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
     #   # @user[:secret_code] = "Squirrel President"
     # end
-    render json: @user
+    if @user.valid
+      render json: @user
+    else
+      render json: {error: "That's not a valid user"}
   end
 
   def locate
@@ -20,7 +23,7 @@ class UsersController < ApplicationController
     if @user.password_digest == params[:password_digest]
       render json: @user
     else
-      render json: {error: "Invalid Password"}
+      render json: ({error: "Invalid Password"})
     end
   end
 
