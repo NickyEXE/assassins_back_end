@@ -38,6 +38,11 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+  def unassigned_users
+    @users = User.all.select{|user| !user.game_id}
+    render json: @users
+  end
+
   def user_params
     params.permit(:name, :id, :password, :password_confirmation, :alias)
   end
