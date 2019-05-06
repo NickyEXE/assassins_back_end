@@ -3,11 +3,8 @@ class Game < ApplicationRecord
   has_many :kills
 
   def add_list_of_users_to_game_by_id(user_ids)
-    user_ids.map do |user_id|
-      user = User.find(user_id)
-      user.update(game_id: self.id)
-      return user
-    end
+    user_ids.map {|user_id| User.find(user_id).update(game_id: self.id)}
+    return self.users
   end
 
   def start_game
