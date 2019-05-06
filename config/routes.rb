@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post '/games/create' => 'games#create'
   post '/users/login' => 'users#login'
   patch '/users/:id/locate' => 'users#locate'
+  patch '/users/:id/kill_target' => 'users#kill_target'
   get '/kills' => 'kills#index', :as => 'kills'
   get '/games' => 'games#index', :as => 'games'
   get '/users' => 'users#index', :as => 'users'
