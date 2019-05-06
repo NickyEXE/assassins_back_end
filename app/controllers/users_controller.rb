@@ -19,6 +19,14 @@ class UsersController < ApplicationController
     render json: @user[:lastTimeUpdated]
   end
 
+  def kill_target
+    @user = User.find(params[:id])
+    @target = User.find(params[:target_id])
+    @user.update(target_id: @target.target_id)
+    @target.update(target_id: nil)
+    render json: @user
+  end
+
   def login
     @user = User.find_by(alias: params[:alias])
     if @user.password_digest == params[:password_digest]

@@ -8,7 +8,7 @@ end
 def target
   if self.target_id
     target = User.find(self.target_id)
-    return {latitude: target[:latitude], longitude: target[:longitude], name: target[:alias]}
+    return {latitude: target[:latitude], longitude: target[:longitude], name: target[:alias], target_id: target[:id]}
   end
 end
 
