@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # get 'kills', :as 'kills/index'
   post '/users/create' => 'users#create'
-  post '/games/start' => 'games#start_game'
+  # post '/games/start' => 'games#start_game'
   post '/games/create' => 'games#create'
   post '/users/login' => 'users#login'
   post '/games/add_users' => 'games#add_users_to_game'
