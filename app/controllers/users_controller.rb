@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def create
-    @user = User.create(name: params[:name], alias: params[:alias], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password_digest: params[:password_digest])
+    @user = User.create(name: params[:name], alias: params[:alias], image_url: params[:image_url], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password_digest: params[:password_digest])
     if @user.valid?
       render json: @user
     else
@@ -37,17 +37,19 @@ class UsersController < ApplicationController
     end
   end
 
+  # 
+  # def update_user_location
+  #   @user = User.find(params[:id])
+  #   @user.update(params[:lat], params[:long], lastTimeUpdated: Time.at(params[:timestamp]/1000))
+  # end
+
+
   def auto_login 
     user_id = request.headers["Authorization"]
     @user = User.find(user_id)
     render json: @user
   end
 
-
-  def update_user_location
-    @user = User.find(params[:id])
-    @user.update(params[:lat], params[:long])
-  end
 
   def index
     @users = User.all
