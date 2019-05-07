@@ -20,7 +20,7 @@ User.destroy_all
     alias: Faker::Name.first_name,
     latitude: nil,
     longitude: nil,
-    secret_code: Faker::Number.number(6),
+    secret_code: Faker::Hacker.adjective + " " + Faker::Creature::Animal.name,
     target_id: nil,
     game_id: nil,
     password_digest: 123456
