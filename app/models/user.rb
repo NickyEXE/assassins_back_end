@@ -9,12 +9,8 @@ class User < ApplicationRecord
   validates :name, :alias, uniqueness: true
   # has_secure_password
 
-
-  def generateWords
-    url = URI("https://random-word-api.herokuapp.com/word?key=GNTWFCEU&number=2")
-    http = Net::HTTP.new(url.host, url.port)
-    request = Net::HTTP::Get.new(url)
-    response = http.request(request)
-    puts response.read_body
+  def hunter
+    User.find_by(target_id: self.id)
   end
+
 end

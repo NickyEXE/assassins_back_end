@@ -28,6 +28,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def self_defense
+    @user = User.find(params[:id])
+    @hunter = @user.hunter
+    if @hunter.secret_code.downcase === params[:secret_code].downcase
+      Kill.create(killer_id: @user.id, victim_id: @hunter.id, game_id: params[:gameId])
+      @hunter.hunter.update(target_id: @user.id)
+      # we should notify the hunter
+      @hunter.update(target_id: nil)
+      render json: @user
+    else
+      render json: {error: "Invalid secret_code"}
+    end
+  end
+
   def login
     @user = User.find_by(alias: params[:alias])
     if @user.password_digest == params[:password_digest]
@@ -37,14 +51,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # 
+  #
   # def update_user_location
   #   @user = User.find(params[:id])
   #   @user.update(params[:lat], params[:long], lastTimeUpdated: Time.at(params[:timestamp]/1000))
   # end
 
 
-  def auto_login 
+  def auto_login
     user_id = request.headers["Authorization"]
     @user = User.find(user_id)
     render json: @user

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   patch '/users/:id/locate' => 'users#locate'
   patch '/users/:id/leave_game' => 'users#leave_game'
   patch '/users/:id/kill_target' => 'users#kill_target'
+  patch '/users/:id/self_defense' => 'users#self_defense'
   get '/users/unassigned' => 'users#unassigned_users', :as => 'unassigned_users'
   get '/kills' => 'kills#index', :as => 'kills'
   get '/games' => 'games#index', :as => 'games'

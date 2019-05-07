@@ -1,8 +1,16 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :alias, :name, :secret_code, :game_id, :latitude, :longitude, :target
+  attributes :id, :alias, :name, :secret_code, :game_id, :latitude, :longitude, :target, :kill_count, :all_time_kill_count
   belongs_to :game
   # has_one :target, class_name: "User", foreign_key: :target_id
 
+end
+
+def kill_count
+  return Kill.where(game_id: self.game.id, killer_id: self.id).length
+end
+
+def all_time_kill_count
+  return Kill.where(killer_id: self.id).length
 end
 
 def target
