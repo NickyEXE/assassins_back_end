@@ -18,11 +18,11 @@ User.destroy_all
 20.times do User.create({
     name: Faker::Name.first_name,
     alias: Faker::Name.first_name,
-    latitude: Faker::Number.decimal(2, 6),
-    longitude: Faker::Number.decimal(2, 6),
+    latitude: nil,
+    longitude: nil,
     secret_code: Faker::Number.number(6),
     target_id: nil,
-    game_id: 1,
+    game_id: nil,
     password_digest: 123456
     })
 end

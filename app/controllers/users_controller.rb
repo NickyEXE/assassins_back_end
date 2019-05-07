@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def locate
     @user = User.find(params[:id])
     @user.update(latitude: params[:latitude], longitude: params[:longitude], lastTimeUpdated: Time.at(params[:timestamp]/1000))
-    render json: @user[:lastTimeUpdated]
+    render json: @user
   end
 
   def kill_target

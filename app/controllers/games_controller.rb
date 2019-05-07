@@ -12,15 +12,15 @@ class GamesController < ApplicationController
   def add_users_to_game
     @game = Game.find(params[:id])
     @users = @game.add_list_of_users_to_game_by_id(params[:users])
-    puts @users
-    render json: @game.users
-  end
-
-
-  def start_game
-    @game = Game.find(params[:id])
     @game.start_game
-    render json: @game.users
+    render json: @user
   end
+
+
+  # def start_game
+  #   @game = Game.find(params[:id])
+  #   @game.start_game
+  #   render json: @game.users
+  # end
 
 end
