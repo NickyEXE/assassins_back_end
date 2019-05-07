@@ -2,10 +2,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(name: params[:name], alias: params[:alias], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password_digest: params[:password_digest])
-    # if @user.valid?
-    #   # @user[:secret_code] = (RandomWord.adjs.next + " " + RandomWord.nouns.next).split("_").join(" ")
-    #   # @user[:secret_code] = "Squirrel President"
-    # end
     if @user.valid?
       render json: @user
     else
