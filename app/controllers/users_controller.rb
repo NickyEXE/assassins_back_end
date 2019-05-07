@@ -18,10 +18,14 @@ class UsersController < ApplicationController
   def kill_target
     @user = User.find(params[:id])
     @target = User.find(params[:target_id])
-    Kill.create(killer_id: params[:id], victim_id: params[:target_id], game_id: params[:gameId])
-    @user.update(target_id: @target.target_id)
-    @target.update(target_id: nil)
-    render json: @user
+    if @target.secret_code.downcase === params[:secret_code].downcase
+      Kill.create(killer_id: params[:id], victim_id: params[:target_id], game_id: params[:gameId])
+      @user.update(target_id: @target.target_id)
+      @target.update(target_id: nil)
+      render json: @user
+    else
+      render json: {error: "Invalid secret_code"}
+    end
   end
 
   def login
