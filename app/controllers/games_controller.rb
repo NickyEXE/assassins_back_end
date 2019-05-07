@@ -13,7 +13,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @users = @game.add_list_of_users_to_game_by_id(params[:users])
     @game.start_game
-    @moderator = User.find(params:[:moderator])
+    @moderator = User.find(params[:moderator])
     render json: @moderator
   end
 
