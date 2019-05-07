@@ -36,11 +36,20 @@ class UsersController < ApplicationController
       render json: ({error: "Invalid Password"})
     end
   end
+
   # 
   # def update_user_location
   #   @user = User.find(params[:id])
   #   @user.update(params[:lat], params[:long], lastTimeUpdated: Time.at(params[:timestamp]/1000))
   # end
+
+
+  def auto_login 
+    user_id = request.headers["Authorization"]
+    @user = User.find(user_id)
+    render json: @user
+  end
+
 
   def index
     @users = User.all
