@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   get '/users/unassigned' => 'users#unassigned_users', :as => 'unassigned_users'
   get '/kills' => 'kills#index', :as => 'kills'
   get '/games' => 'games#index', :as => 'games'
-  get '/users' => 'users#index', :as => 'users'
+
   post '/kills/:id/stats' => 'kills#stats'
   get '/users/auto_login' => 'users#auto_login'
+  get '/users' => 'users#index', :as => 'users'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
