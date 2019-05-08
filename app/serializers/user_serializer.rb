@@ -7,7 +7,11 @@ end
 
 def kill_count
   if self.game_id
+<<<<<<< HEAD
    return Kill.where(game_id: self.game.id, killer_id: self.id).length
+=======
+  return Kill.where(game_id: self.game.id, killer_id: self.id).length
+>>>>>>> a72a2b5de329f73213e09ae810ce6955d70702b7
   end
 end
 

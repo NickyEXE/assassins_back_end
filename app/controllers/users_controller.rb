@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   def create
-    @user = User.create(name: params[:name], alias: params[:alias], image_url: params[:image_url], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password_digest: params[:password_digest])
-    if @user.valid?
+    @user = User.create(name: params[:name], alias: params[:alias], image_url: params[:image_url], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password: params[:password_digest])
+    if @user.valid? && @user.authenticate(params[:password_digest])
       render json: @user
     else
       render json: {error: "That's not a valid user"}
@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     if @hunter.secret_code.downcase === params[:secret_code].downcase
       Kill.create(killer_id: @user.id, victim_id: @hunter.id, game_id: params[:gameId])
       @hunter.hunter.update(target_id: @user.id)
+      UserMailer.with(user: @hunter.hunter).deliver_later
       # we should notify the hunter
       @hunter.update(target_id: nil)
       render json: @user
@@ -61,7 +62,11 @@ class UsersController < ApplicationController
   def auto_login
     user_id = request.headers["Authorization"]
     @user = User.find(user_id)
-    render json: @user
+    if @user
+      render json: @user
+    else
+      render json: ({response: "No user found"})
+    end
   end
 
 
