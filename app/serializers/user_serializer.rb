@@ -6,7 +6,9 @@ class UserSerializer < ActiveModel::Serializer
 end
 
 def kill_count
-  return Kill.where(game_id: self.game.id, killer_id: self.id).length
+  if self.game_id
+   return Kill.where(game_id: self.game.id, killer_id: self.id).length
+  end
 end
 
 def all_time_kill_count
