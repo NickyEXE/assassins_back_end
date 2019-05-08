@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     if @hunter.secret_code.downcase === params[:secret_code].downcase
       Kill.create(killer_id: @user.id, victim_id: @hunter.id, game_id: params[:gameId])
       @hunter.hunter.update(target_id: @user.id)
+      UserMailer.with(user: @hunter.hunter).deliver_later
       # we should notify the hunter
       @hunter.update(target_id: nil)
       render json: @user
@@ -61,7 +62,11 @@ class UsersController < ApplicationController
   def auto_login
     user_id = request.headers["Authorization"]
     @user = User.find(user_id)
-    render json: @user
+    if @user
+      render json: @user
+    else
+      render json: ({response: "No user found"})
+    end
   end
 
 
