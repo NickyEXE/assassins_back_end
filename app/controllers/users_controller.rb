@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
   def create
-    @user = User.create(name: params[:name], alias: params[:alias], image_url: params[:image_url], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password_digest: params[:password_digest])
-    if @user.valid?
+    @user = User.create(name: params[:name], alias: params[:alias], image_url: params[:image_url], secret_code: (Faker::Hacker.adjective + " " + Faker::Creature::Animal.name), password: params[:password_digest])
+    if @user.valid? && @user.authenticate(params[:password_digest])
       render json: @user
     else
       render json: {error: "That's not a valid user"}
